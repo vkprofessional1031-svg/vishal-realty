@@ -1,0 +1,115 @@
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import logo from '../../assets/logo.png';
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300"
+      style={{ 
+        fontFamily: 'DM Sans, sans-serif',
+        boxShadow: isScrolled ? '0 4px 20px rgba(0,0,0,0.08)' : '0 2px 10px rgba(0,0,0,0.05)'
+      }}
+    >
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <div className="flex items-center">
+            <img src={logo} alt="Vishal Realty" className="h-16 w-auto" />
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
+            <a href="#home" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
+              Home
+            </a>
+            <a href="#services" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
+              Services
+            </a>
+
+            <a href="#about" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
+              About
+            </a>
+            <a href="#contact" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
+              Contact
+            </a>
+          </div>
+
+          {/* CTA Button */}
+          <a
+            href="#contact"
+            className="hidden lg:block px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
+          >
+            Get in Touch
+          </a>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden text-[#2D2D2D]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200">
+            <div className="flex flex-col gap-4">
+              <a
+                href="#home"
+                className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Home
+              </a>
+              <a
+                href="#services"
+                className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Services
+              </a>
+
+              <a
+                href="#about"
+                className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="#contact"
+                className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity text-center"
+                style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Get in Touch
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+}
