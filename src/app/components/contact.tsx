@@ -76,7 +76,7 @@ export function Contact() {
               }}
             >
               <iframe
-                src="https://www.google.com/maps?q=Adyar,+Chennai&output=embed"
+                src="https://www.google.com/maps?q=VISHAL+REALTY,+29%2F14,+Kamaraj+Ave+2nd+St,+Venkata+Rathinam+Nagar,+Adyar,+Chennai,+Tamil+Nadu+600020,+India&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
