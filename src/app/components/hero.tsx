@@ -46,7 +46,6 @@ export function Hero() {
             style={{ 
               fontFamily: 'DM Sans, sans-serif',
               color: '#00AEEF',
-              fontSize: '18px',
               fontWeight: 500
             }}
           >
@@ -58,7 +57,7 @@ export function Hero() {
         <div className="flex justify-center">
           <a
             href="#contact"
-            className="group relative px-10 py-4 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:scale-105"
+            className="group relative px-6 md:px-10 py-4 text-white font-medium rounded-lg overflow-hidden transition-all duration-300 hover:scale-105"
             style={{ 
               backgroundColor: '#00AEEF',
               borderRadius: '8px',

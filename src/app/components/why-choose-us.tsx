@@ -104,7 +104,7 @@ export function WhyChooseUs() {
           </motion.div>
 
           {/* Right: 2x2 Icon Grid */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {usps.map((usp, index) => (
               <motion.div
                 key={index}
