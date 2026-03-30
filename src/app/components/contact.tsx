@@ -21,14 +21,32 @@ export function Contact() {
     formState: { errors },
   } = useForm<ContactFormData>();
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    reset();
-    setTimeout(() => setIsSuccess(false), 5000);
+    try {
+      await fetch("https://formsubmit.co/ajax/vishalrealty@outlook.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Name: data.fullName,
+          Phone: data.phone,
+          Email: data.email,
+          Message: data.message,
+          _subject: "New Contact Request from Website!"
+        })
+      });
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
