@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, MessageCircle, RefreshCw } from 'lucide-react';
 import { PropertyCard } from './property-card';
-import propertiesData from '../../data/properties.json';
 
 interface Property {
   id: number;
@@ -24,8 +23,123 @@ interface Property {
   highlights: string[];
 }
 
-// Explicitly type import as Property[]
-const propertiesList: Property[] = propertiesData as Property[];
+// Define premium upcoming properties directly for elegant "Coming Soon" showcase placeholders
+const propertiesList: Property[] = [
+  {
+    id: 1,
+    title: "Premium Luxury Apartments",
+    type: "Apartment",
+    status: "For Sale",
+    locality: "Adyar",
+    address: "Kamaraj Avenue, Adyar, Chennai",
+    price: "Price on Request",
+    area: 1800,
+    bhk: 3,
+    floor: "3rd",
+    furnished: "Legally Verified",
+    parking: "2 Covered",
+    facing: "East",
+    image: "",
+    featured: true,
+    description: "Exclusive residential collections in Adyar. Our team is legally verifying documentation and clearing land titles.",
+    highlights: ["Premium Location", "Legally Verified", "Early Access Available"]
+  },
+  {
+    id: 2,
+    title: "Beachfront Independent Villas",
+    type: "Villa",
+    status: "For Sale",
+    locality: "ECR",
+    address: "ECR Road, Thiruvanmiyur / ECR, Chennai",
+    price: "Price on Request",
+    area: 3200,
+    bhk: 4,
+    floor: "G+1",
+    furnished: "Legally Verified",
+    parking: "3 Private",
+    facing: "North",
+    image: "",
+    featured: true,
+    description: "Ultra-luxury beachfront villas along ECR. CMDA approval and detailed legal clearance checks are currently in progress.",
+    highlights: ["Beachfront View", "Private Pool Option", "DTCP Approved plots"]
+  },
+  {
+    id: 3,
+    title: "Grade-A Commercial Office Spaces",
+    type: "Commercial",
+    status: "For Lease",
+    locality: "OMR",
+    address: "OMR IT Expressway, OMR, Chennai",
+    price: "Price on Request",
+    area: 5000,
+    bhk: null,
+    floor: "5th",
+    furnished: "Legally Verified",
+    parking: "Ample Covered",
+    facing: "West",
+    image: "",
+    featured: false,
+    description: "Modern commercial office layout on the prime IT corridor of Chennai. Ideal for IT expansion and corporate leases.",
+    highlights: ["IT Corridor", "High Rental Yield", "Ample Car Parking"]
+  },
+  {
+    id: 4,
+    title: "DTCP Approved Residential Plots",
+    type: "Plot",
+    status: "For Sale",
+    locality: "Thiruvanmiyur",
+    address: "Thiruvanmiyur Main Road, Thiruvanmiyur, Chennai",
+    price: "Price on Request",
+    area: 2400,
+    bhk: null,
+    floor: null,
+    furnished: "Legally Verified",
+    parking: "N/A",
+    facing: "South",
+    image: "",
+    featured: false,
+    description: "Prime residential plots in Thiruvanmiyur. All plots are CMDA/DTCP approved and have completed 100% legal title verification.",
+    highlights: ["DTCP Approved", "Clear Title", "Immediate Construction"]
+  },
+  {
+    id: 5,
+    title: "Premium Beach-View Apartments",
+    type: "Apartment",
+    status: "For Rent",
+    locality: "Besant Nagar",
+    address: "Besant Nagar Beach Road, Besant Nagar, Chennai",
+    price: "Price on Request",
+    area: 2000,
+    bhk: 3,
+    floor: "4th",
+    furnished: "Legally Verified",
+    parking: "2 Covered",
+    facing: "East",
+    image: "",
+    featured: true,
+    description: "Premium apartments overlooking the Besant Nagar beach. Currently undergoing final verification and landscaping.",
+    highlights: ["Ocean View", "Premium Locality", "Early Booking Open"]
+  },
+  {
+    id: 6,
+    title: "High-Visibility Commercial Showrooms",
+    type: "Commercial",
+    status: "For Sale",
+    locality: "Adyar",
+    address: "Adyar Main Road, Adyar, Chennai",
+    price: "Price on Request",
+    area: 3500,
+    bhk: null,
+    floor: "Ground",
+    furnished: "Legally Verified",
+    parking: "Ample Frontage",
+    facing: "North",
+    image: "",
+    featured: false,
+    description: "High-visibility retail showroom and office spaces in the heart of Adyar. Legally cleared with broad road frontage.",
+    highlights: ["Main Road Frontage", "High Footfalls", "Excellent Frontage"]
+  }
+];
 
 const statuses = ['All', 'For Sale', 'For Rent', 'For Lease'];
 const types = ['All', 'Apartment', 'Villa', 'Plot', 'Commercial'];

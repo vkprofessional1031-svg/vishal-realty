@@ -47,7 +47,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
   const handleWhatsAppEnquiry = () => {
     const encodedTitle = encodeURIComponent(property.title);
     const encodedLocality = encodeURIComponent(property.locality);
-    const whatsappUrl = `https://wa.me/916383977798?text=Hi%2C%20I%20am%20interested%20in%20the%20${encodedTitle}%20in%20${encodedLocality}%20listed%20on%20your%20website.%20Please%20share%20more%20details.`;
+    const whatsappUrl = `https://wa.me/916383977798?text=Hi%20Kishore%2C%20I%20am%20interested%20in%20early%20access%20for%20the%20upcoming%20${encodedTitle}%20in%20${encodedLocality}.%20Please%20notify%20me%20when%20details%20are%20active.`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
@@ -75,10 +75,17 @@ export function PropertyCard({ property }: PropertyCardProps) {
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200 text-gray-400">
-            <Home size={48} className="mb-2 opacity-60" />
-            <span className="text-xs font-semibold tracking-wider uppercase" style={{ fontFamily: 'DM Sans, sans-serif' }}>
-              Photo Coming Soon
+          <div 
+            className="w-full h-full flex flex-col items-center justify-center text-white relative overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, #1A2B5F 0%, #00AEEF 100%)' }}
+          >
+            <div className="absolute inset-0 bg-black/10" />
+            <Home size={40} className="mb-2.5 opacity-90 relative z-10 animate-pulse" />
+            <span 
+              className="text-xs font-bold tracking-[0.15em] uppercase relative z-10 text-center px-4" 
+              style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+            >
+              Properties Coming Soon
             </span>
           </div>
         )}
@@ -223,7 +230,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
           }}
         >
           <MessageCircle size={18} fill="white" />
-          Enquire on WhatsApp
+          Get Early Access
         </button>
       </div>
     </motion.div>
