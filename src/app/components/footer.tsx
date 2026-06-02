@@ -1,5 +1,5 @@
 import { Mail, Instagram, MessageCircle } from 'lucide-react';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo-symbol.png';
 
 export function Footer() {
   return (
@@ -93,11 +93,11 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
-                'Rental Services',
-                'Real Estate',
-                'Property Management',
-                'Construction',
-                'Solar PV Systems'
+                'Property Investment Advisory',
+                'Real Estate Buying & Selling',
+                'Joint Venture Development',
+                'Rentals & Leasing Solutions',
+                'Property Management'
               ].map((service, index) => (
                 <li key={index}>
                   <a

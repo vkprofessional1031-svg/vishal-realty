@@ -1,61 +1,69 @@
 import { motion } from 'motion/react';
 import { 
-  Key, 
-  Home, 
   Briefcase, 
-  Hammer, 
-  Zap, 
-  Wrench, 
-  Droplet, 
-  Building, 
-  Sun 
+  Home, 
+  Building2, 
+  Key, 
+  ShieldCheck 
 } from 'lucide-react';
 
 const services = [
   {
-    icon: Key,
-    title: 'Rental Services',
-    description: 'Comprehensive rental solutions for residential and commercial properties'
+    icon: Briefcase,
+    title: 'Property Investment Advisory',
+    description: 'Expert guidance to maximize your returns through informed real estate investments.',
+    subServices: [
+      'Property Investment Consulting',
+      'Comparative Property Market Analysis',
+      'Appraisals'
+    ],
+    propertyTypes: ['Residential', 'Commercial', 'Land', 'Industrial']
   },
   {
     icon: Home,
-    title: 'Real Estate Buying or Selling',
-    description: 'Expert guidance for property transactions across Chennai'
+    title: 'Real Estate Buying & Selling',
+    description: 'Professional representation and consulting for stress-free transactions.',
+    subServices: [
+      'Buying Agent Services',
+      'Seller\'s Agent Services',
+      'Residential Property Consulting',
+      'Commercial Property Buying and Sales',
+      'First-Time Home Buyer Services'
+    ],
+    propertyTypes: ['Residential', 'Commercial', 'Land']
   },
   {
-    icon: Briefcase,
-    title: 'Property Management Services',
-    description: 'End-to-end management for your real estate investments'
+    icon: Building2,
+    title: 'Joint Venture Development',
+    description: 'Maximizing asset value through strategic and transparent partnerships.',
+    subServices: [
+      'Land Buying and Sales',
+      'Property Development Consulting',
+      'Commercial Property Consulting',
+      'New Construction Services'
+    ],
+    propertyTypes: ['Land', 'Residential', 'Commercial']
   },
   {
-    icon: Hammer,
-    title: 'Carpentry & Interior Design',
-    description: 'Custom woodwork and interior design solutions'
+    icon: Key,
+    title: 'Rentals & Leasing Solutions',
+    description: 'Comprehensive rental assistance and commercial/office space leasing.',
+    subServices: [
+      'Property Rental Assistance',
+      'Property Leasing',
+      'Office Space Leasing'
+    ],
+    propertyTypes: ['Residential', 'Commercial']
   },
   {
-    icon: Zap,
-    title: 'Electricals & Inverters',
-    description: 'Professional electrical installations and inverter systems'
-  },
-  {
-    icon: Wrench,
-    title: 'Renovation & Civil Works',
-    description: 'Complete renovation and civil construction services'
-  },
-  {
-    icon: Droplet,
-    title: 'Plumbing & Painting Works',
-    description: 'Quality plumbing and painting for all property types'
-  },
-  {
-    icon: Building,
-    title: 'Construction & JV (Joint Venture)',
-    description: 'Large-scale construction projects and joint venture opportunities'
-  },
-  {
-    icon: Sun,
-    title: 'Solar PV Systems',
-    description: 'Sustainable solar energy solutions for residential and commercial spaces'
+    icon: ShieldCheck,
+    title: 'Property Management',
+    description: 'End-to-end management and relocation support to protect your assets.',
+    subServices: [
+      'Property Management',
+      'Relocation Assistance'
+    ],
+    propertyTypes: ['Residential', 'Commercial']
   }
 ];
 
@@ -83,12 +91,12 @@ export function Services() {
               color: '#1A2B5F'
             }}
           >
-            Our Best Services
+            Our Professional Services
           </h2>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -96,11 +104,12 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-lg p-6 transition-all duration-300 hover:border-t-4"
+              className="group bg-white rounded-lg p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:border-t-4 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[380px] min-w-[290px]"
               style={{ 
                 borderRadius: '8px',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                borderTop: '4px solid transparent'
+                boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+                borderTop: '4px solid transparent',
+                border: '1px solid rgba(0,0,0,0.03)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderTopColor = '#00AEEF';
@@ -109,33 +118,82 @@ export function Services() {
                 e.currentTarget.style.borderTopColor = 'transparent';
               }}
             >
-              <div 
-                className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
-                style={{ backgroundColor: 'rgba(245, 166, 35, 0.1)' }}
-              >
-                <service.icon size={24} style={{ color: '#F5A623' }} strokeWidth={2} />
+              <div>
+                <div 
+                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
+                  style={{ backgroundColor: 'rgba(245, 166, 35, 0.1)' }}
+                >
+                  <service.icon size={24} style={{ color: '#F5A623' }} strokeWidth={2} />
+                </div>
+                
+                <h3
+                  className="text-xl mb-3"
+                  style={{ 
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontWeight: 700,
+                    color: '#1A2B5F'
+                  }}
+                >
+                  {service.title}
+                </h3>
+                
+                <p
+                  className="text-sm leading-relaxed mb-4"
+                  style={{ 
+                    fontFamily: 'DM Sans, sans-serif',
+                    color: '#4A4A4A'
+                  }}
+                >
+                  {service.description}
+                </p>
+
+                {/* Sub-services List */}
+                <div className="mb-6">
+                  <p
+                    className="text-xs font-semibold tracking-wider uppercase mb-2"
+                    style={{ color: '#1A2B5F', opacity: 0.6 }}
+                  >
+                    Sub-Services
+                  </p>
+                  <ul className="space-y-1.5">
+                    {service.subServices.map((sub, sIdx) => (
+                      <li 
+                        key={sIdx} 
+                        className="text-xs flex items-start gap-2"
+                        style={{ fontFamily: 'DM Sans, sans-serif', color: '#555555' }}
+                      >
+                        <span className="text-[#00AEEF] mt-0.5">•</span>
+                        <span>{sub}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              
-              <h3
-                className="text-xl mb-2"
-                style={{ 
-                  fontFamily: 'Plus Jakarta Sans, sans-serif',
-                  fontWeight: 700,
-                  color: '#1A2B5F'
-                }}
-              >
-                {service.title}
-              </h3>
-              
-              <p
-                className="text-sm leading-relaxed"
-                style={{ 
-                  fontFamily: 'DM Sans, sans-serif',
-                  color: '#2D2D2D'
-                }}
-              >
-                {service.description}
-              </p>
+
+              {/* Property Types Badges */}
+              <div>
+                <p
+                  className="text-xs font-semibold tracking-wider uppercase mb-2"
+                  style={{ color: '#1A2B5F', opacity: 0.6 }}
+                >
+                  Property Types
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {service.propertyTypes.map((type, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                      style={{ 
+                        backgroundColor: 'rgba(0, 174, 239, 0.08)', 
+                        color: '#00AEEF',
+                        fontFamily: 'DM Sans, sans-serif'
+                      }}
+                    >
+                      {type}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

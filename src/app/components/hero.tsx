@@ -41,16 +41,26 @@ export function Hero() {
             From finding your dream home to building sustainable futures
           </p>
 
-          <p
-            className="text-lg md:text-xl mb-10"
-            style={{ 
-              fontFamily: 'DM Sans, sans-serif',
-              color: '#00AEEF',
-              fontWeight: 500
-            }}
-          >
-            Rental • Real Estate • Construction • Solar • Interior Design
-          </p>
+          <div className="mb-10 space-y-2">
+            <p
+              className="text-lg md:text-xl font-medium"
+              style={{ 
+                fontFamily: 'DM Sans, sans-serif',
+                color: '#00AEEF'
+              }}
+            >
+              Investment • Buying & Selling • JV Development • Rentals • Property Management
+            </p>
+            <p
+              className="text-sm md:text-base font-normal opacity-90"
+              style={{ 
+                fontFamily: 'DM Sans, sans-serif',
+                color: '#FFFFFF'
+              }}
+            >
+              Residential • Commercial • Land • Industrial
+            </p>
+          </div>
         </div>
 
         {/* CTA Button */}

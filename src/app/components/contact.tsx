@@ -8,6 +8,8 @@ type ContactFormData = {
   phone: string;
   email: string;
   message: string;
+  service?: string;
+  dateTime?: string;
 };
 
 export function Contact() {
@@ -34,8 +36,10 @@ export function Contact() {
           Name: data.fullName,
           Phone: data.phone,
           Email: data.email,
+          ServiceInterestedIn: data.service || 'Not specified',
+          PreferredDateTime: data.dateTime || 'Not specified',
           Message: data.message,
-          _subject: "New Contact Request from Website!"
+          _subject: "New Booking & Contact Request from Website!"
         })
       });
       setIsSuccess(true);
@@ -43,7 +47,7 @@ export function Contact() {
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
       console.error(error);
-      alert("Failed to send message. Please try again.");
+      alert("Failed to book consultation. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -204,7 +208,7 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg p-8 h-fit"
+            className="bg-white rounded-lg p-8 h-fit animate-fade-in"
             style={{ 
               borderRadius: '10px',
               boxShadow: '0 4px 20px rgba(0,0,0,0.08)'
@@ -230,19 +234,133 @@ export function Contact() {
                       color: '#1A2B5F'
                     }}
                   >
-                    Full Name
+                    Full Name *
                   </label>
                   <input
                     type="text"
                     placeholder="Your name"
                     {...register('fullName', { required: 'Full Name is required', minLength: { value: 2, message: 'Minimum 2 characters' } })}
-                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors"
+                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors text-sm"
                     style={{ 
                       borderRadius: '6px',
                       fontFamily: 'DM Sans, sans-serif'
                     }}
                   />
-                  {errors.fullName && <p className="text-sm mt-1" style={{ color: '#D4183D' }}>{errors.fullName.message}</p>}
+                  {errors.fullName && <p className="text-sm mt-1 font-semibold" style={{ color: '#D4183D', fontFamily: 'DM Sans, sans-serif' }}>{errors.fullName.message}</p>}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      className="block text-sm mb-2"
+                      style={{ 
+                        fontFamily: 'DM Sans, sans-serif',
+                        fontWeight: 500,
+                        color: '#1A2B5F'
+                      }}
+                    >
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="10-digit mobile number"
+                      {...register('phone', { 
+                        required: 'Phone Number is required',
+                        pattern: {
+                          value: /^(\+91[\-\s]?)?[6789]\d{9}$|^\d{10}$/i,
+                          message: 'Please enter a valid 10-digit number'
+                        }
+                      })}
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors text-sm"
+                      style={{ 
+                        borderRadius: '6px',
+                        fontFamily: 'DM Sans, sans-serif'
+                      }}
+                    />
+                    {errors.phone && <p className="text-sm mt-1 font-semibold" style={{ color: '#D4183D', fontFamily: 'DM Sans, sans-serif' }}>{errors.phone.message}</p>}
+                  </div>
+
+                  <div>
+                    <label
+                      className="block text-sm mb-2"
+                      style={{ 
+                        fontFamily: 'DM Sans, sans-serif',
+                        fontWeight: 500,
+                        color: '#1A2B5F'
+                      }}
+                    >
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="your.email@example.com"
+                      {...register('email', { 
+                        required: 'Email Address is required',
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: 'Invalid email format'
+                        }
+                      })}
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors text-sm"
+                      style={{ 
+                        borderRadius: '6px',
+                        fontFamily: 'DM Sans, sans-serif'
+                      }}
+                    />
+                    {errors.email && <p className="text-sm mt-1 font-semibold" style={{ color: '#D4183D', fontFamily: 'DM Sans, sans-serif' }}>{errors.email.message}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      className="block text-sm mb-2"
+                      style={{ 
+                        fontFamily: 'DM Sans, sans-serif',
+                        fontWeight: 500,
+                        color: '#1A2B5F'
+                      }}
+                    >
+                      Service Interested In (Optional)
+                    </label>
+                    <select
+                      {...register('service')}
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] bg-white transition-colors text-sm"
+                      style={{ 
+                        borderRadius: '6px',
+                        fontFamily: 'DM Sans, sans-serif'
+                      }}
+                    >
+                      <option value="">Select a Service</option>
+                      <option value="Investment Advisory">Investment Advisory</option>
+                      <option value="Buying & Selling">Buying & Selling</option>
+                      <option value="JV Development">JV Development</option>
+                      <option value="Rentals">Rentals</option>
+                      <option value="Property Management">Property Management</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      className="block text-sm mb-2"
+                      style={{ 
+                        fontFamily: 'DM Sans, sans-serif',
+                        fontWeight: 500,
+                        color: '#1A2B5F'
+                      }}
+                    >
+                      Preferred Date & Time (Optional)
+                    </label>
+                    <input
+                      type="datetime-local"
+                      {...register('dateTime')}
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors text-sm"
+                      style={{ 
+                        borderRadius: '6px',
+                        fontFamily: 'DM Sans, sans-serif'
+                      }}
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -254,93 +372,35 @@ export function Contact() {
                       color: '#1A2B5F'
                     }}
                   >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="+91 63839 77798"
-                    {...register('phone', { 
-                      required: 'Phone Number is required',
-                      pattern: {
-                        value: /^(\+91[\-\s]?)?[7896]\d{9}$|^\d{10}$/i,
-                        message: 'Must match Indian phone format (+91 or 10 digits)'
-                      }
-                    })}
-                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors"
-                    style={{ 
-                      borderRadius: '6px',
-                      fontFamily: 'DM Sans, sans-serif'
-                    }}
-                  />
-                  {errors.phone && <p className="text-sm mt-1" style={{ color: '#D4183D' }}>{errors.phone.message}</p>}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-sm mb-2"
-                    style={{ 
-                      fontFamily: 'DM Sans, sans-serif',
-                      fontWeight: 500,
-                      color: '#1A2B5F'
-                    }}
-                  >
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="your.email@example.com"
-                    {...register('email', { 
-                      required: 'Email Address is required',
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Invalid email format'
-                      }
-                    })}
-                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors"
-                    style={{ 
-                      borderRadius: '6px',
-                      fontFamily: 'DM Sans, sans-serif'
-                    }}
-                  />
-                  {errors.email && <p className="text-sm mt-1" style={{ color: '#D4183D' }}>{errors.email.message}</p>}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-sm mb-2"
-                    style={{ 
-                      fontFamily: 'DM Sans, sans-serif',
-                      fontWeight: 500,
-                      color: '#1A2B5F'
-                    }}
-                  >
-                    Message
+                    Message *
                   </label>
                   <textarea
                     rows={4}
                     placeholder="Tell us about your requirements..."
                     {...register('message', { required: 'Message is required', minLength: { value: 10, message: 'Minimum 10 characters' } })}
-                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors resize-none"
+                    className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:border-[#00AEEF] transition-colors resize-none text-sm"
                     style={{ 
                       borderRadius: '6px',
                       fontFamily: 'DM Sans, sans-serif'
                     }}
                   />
-                  {errors.message && <p className="text-sm mt-1" style={{ color: '#D4183D' }}>{errors.message.message}</p>}
+                  {errors.message && <p className="text-sm mt-1 font-semibold" style={{ color: '#D4183D', fontFamily: 'DM Sans, sans-serif' }}>{errors.message.message}</p>}
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-70"
+                  className="w-full px-6 py-3.5 text-white font-bold rounded-md hover:opacity-90 transition-opacity flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer shadow"
                   style={{ 
                     backgroundColor: '#00AEEF',
                     borderRadius: '6px',
-                    fontFamily: 'DM Sans, sans-serif'
+                    fontFamily: 'DM Sans, sans-serif',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
                   }}
                 >
                   {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Booking...' : 'Book My Free Consultation'}
                 </button>
               </form>
             )}

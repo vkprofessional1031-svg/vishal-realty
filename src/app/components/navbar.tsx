@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import logo from '../../assets/logo.png';
+import logoSymbol from '../../assets/logo-symbol.png';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,8 +28,19 @@ export function Navbar() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center">
-            <img src={logo} alt="Vishal Realty" className="h-16 w-auto" />
+          <div className="flex items-center h-16 relative overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={isScrolled ? 'symbol' : 'full'}
+                src={isScrolled ? logoSymbol : logo}
+                alt="Vishal Realty"
+                initial={{ opacity: 0, scale: 0.95, y: 5 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -5 }}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                className="h-14 w-auto object-contain cursor-pointer"
+              />
+            </AnimatePresence>
           </div>
 
           {/* Desktop Navigation */}
