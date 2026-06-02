@@ -1,29 +1,5 @@
 import { motion } from 'motion/react';
-import { Award, Handshake, ShieldCheck, Key } from 'lucide-react';
 import founderImg from '../../assets/founder.jpg';
-
-const pillars = [
-  {
-    icon: Award,
-    title: 'Expert Guidance',
-    description: '10+ years of local Chennai real estate expertise.'
-  },
-  {
-    icon: Handshake,
-    title: 'Transparent Deals',
-    description: 'No hidden charges, clear and honest dealings.'
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Verified Properties',
-    description: 'Vigorously vetted legally and physically.'
-  },
-  {
-    icon: Key,
-    title: 'End-to-End Support',
-    description: 'With you from first visit to registration.'
-  }
-];
 
 export function Founder() {
   return (
@@ -54,7 +30,7 @@ export function Founder() {
         </div>
 
         {/* Split Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Side: Photo + Quote */}
           <div className="lg:col-span-5 flex flex-col items-center">
             {/* Founder Photo */}
@@ -67,7 +43,7 @@ export function Founder() {
             >
               <img 
                 src={founderImg} 
-                alt="Kishore Vigneswaran - Founder & Director" 
+                alt="Kishore Kumar Vigneswaran - Founder & Director" 
                 className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
               />
             </div>
@@ -89,16 +65,17 @@ export function Founder() {
           {/* Right Side: Bio + 4 Pillars Grid */}
           <div className="lg:col-span-7">
             <h3
-              className="text-2xl font-extrabold mb-1"
+              className="text-3xl lg:text-4xl font-extrabold mb-2"
               style={{ 
                 fontFamily: 'Plus Jakarta Sans, sans-serif',
-                color: '#1A2B5F'
+                color: '#1A2B5F',
+                letterSpacing: '-0.02em'
               }}
             >
-              Kishore Vigneswaran
+              Kishore Kumar Vigneswaran
             </h3>
             <p
-              className="text-sm font-semibold tracking-wider uppercase mb-6"
+              className="text-sm lg:text-base font-extrabold tracking-[0.15em] uppercase mb-8"
               style={{ 
                 color: '#00AEEF',
                 fontFamily: 'DM Sans, sans-serif'
@@ -107,56 +84,27 @@ export function Founder() {
               Founder & Real Estate Consultant, Vishal Realty
             </p>
 
-            <p
-              className="text-base leading-relaxed mb-8"
-              style={{ 
-                fontFamily: 'DM Sans, sans-serif',
-                color: '#4A4A4A'
-              }}
-            >
-              With over 10 years of experience in Chennai's real estate market, Kishore Vigneswaran founded Vishal Realty Consultancy with one clear purpose — to guide first-time home buyers through one of the most important decisions of their lives, with honesty, clarity, and care. Having witnessed how overwhelming and confusing the property buying journey can be, Kishore built Vishal Realty on four core pillars: Expert Guidance, Transparent Deals, Verified Properties, and End-to-End Support. Today, Vishal Realty serves not just first-time buyers but also investors, landlords, and developers — always with the same commitment that started it all: putting your best interests first.
-            </p>
-
-            {/* 4 Pillars Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {pillars.map((pillar, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white rounded-lg p-5 flex gap-4 transition-all duration-300 hover:shadow-md"
-                  style={{ 
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
-                    border: '1px solid rgba(0,0,0,0.02)'
-                  }}
-                >
-                  <div 
-                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: 'rgba(245, 166, 35, 0.1)' }}
-                  >
-                    <pillar.icon size={20} style={{ color: '#F5A623' }} strokeWidth={2} />
-                  </div>
-                  <div>
-                    <h4
-                      className="text-sm font-bold mb-1"
-                      style={{ 
-                        fontFamily: 'Plus Jakarta Sans, sans-serif',
-                        color: '#1A2B5F'
-                      }}
-                    >
-                      {pillar.title}
-                    </h4>
-                    <p
-                      className="text-xs leading-relaxed"
-                      style={{ 
-                        fontFamily: 'DM Sans, sans-serif',
-                        color: '#666666'
-                      }}
-                    >
-                      {pillar.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="space-y-6">
+              <p
+                className="text-lg lg:text-xl font-normal"
+                style={{ 
+                  fontFamily: 'DM Sans, sans-serif',
+                  lineHeight: '1.8',
+                  color: '#374151'
+                }}
+              >
+                With over 10 years of deep experience in Chennai's premium real estate market, Kishore Kumar Vigneswaran founded Vishal Realty Consultancy with one clear purpose — to guide families and home buyers through one of the most important decisions of their lives with absolute honesty, clarity, and care.
+              </p>
+              <p
+                className="text-lg lg:text-xl font-normal"
+                style={{ 
+                  fontFamily: 'DM Sans, sans-serif',
+                  lineHeight: '1.8',
+                  color: '#374151'
+                }}
+              >
+                Having witnessed firsthand how complex and overwhelming the property buying journey can be, Kishore built Vishal Realty on a bedrock of trust and transparency. Today, the consultancy serves home buyers, developers, and investors alike — always driven by the same founding commitment: putting your best interests first and delivering expert, end-to-end support.
+              </p>
             </div>
           </div>
         </div>

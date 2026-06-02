@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
-import { CheckCircle, Star, ShieldCheck, Users } from 'lucide-react';
+import { Award, Handshake, ShieldCheck, Key } from 'lucide-react';
 
 const values = [
   {
-    icon: Star,
+    icon: Award,
     title: 'Expert Guidance',
     description: '10+ years of local Chennai real estate expertise.'
   },
@@ -13,13 +13,13 @@ const values = [
     description: 'Every property legally and physically vetted.'
   },
   {
-    icon: CheckCircle,
+    icon: Handshake,
     title: 'Transparent Deals',
     description: 'No hidden charges, clear and honest dealings.'
   },
   {
-    icon: Users,
-    title: 'End-To-End Support',
+    icon: Key,
+    title: 'End-to-End Support',
     description: 'With you from first visit to final registration.'
   }
 ];

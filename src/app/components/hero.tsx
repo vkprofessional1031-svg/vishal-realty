@@ -26,7 +26,7 @@ export function Hero() {
               letterSpacing: '-0.02em'
             }}
           >
-            Your Trusted Real Estate Partner in Chennai
+            Trusted Real Estate Expertise
           </h1>
           
           <p
@@ -49,7 +49,7 @@ export function Hero() {
                 color: '#00AEEF'
               }}
             >
-              Investment • Buying & Selling • JV Development • Rentals • Property Management
+              Investment • Buy • Sell
             </p>
             <p
               className="text-sm md:text-base font-normal opacity-90"

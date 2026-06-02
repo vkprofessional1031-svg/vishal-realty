@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, MessageCircle, RefreshCw } from 'lucide-react';
 import { PropertyCard } from './property-card';
+import { getPublicProperties } from '../../supabase/properties';
 
 interface Property {
-  id: number;
+  id: string | number;
   title: string;
   type: string;
-  status: string;
+  status: string;       // For Sale / For Rent / For Lease
+  visibility?: string;   // 'live' | 'draft' | 'hidden'
   locality: string;
   address: string;
   price: string;
@@ -17,14 +19,17 @@ interface Property {
   furnished: string;
   parking: string;
   facing: string;
-  image: string;
+  images?: string[];     // array of Supabase storage URLs
+  image?: string;        // legacy fallback image URL
+  floor_plan?: string | null;
   featured: boolean;
   description: string;
   highlights: string[];
+  created_at?: string;
 }
 
-// Define premium upcoming properties directly for elegant "Coming Soon" showcase placeholders
-const propertiesList: Property[] = [
+// Fallback premium upcoming properties for elegant "Coming Soon" placeholders
+const comingSoonList: Property[] = [
   {
     id: 1,
     title: "Premium Luxury Apartments",
@@ -145,13 +150,51 @@ const statuses = ['All', 'For Sale', 'For Rent', 'For Lease'];
 const types = ['All', 'Apartment', 'Villa', 'Plot', 'Commercial'];
 const localities = ['All', 'Adyar', 'OMR', 'ECR', 'Besant Nagar', 'Thiruvanmiyur'];
 
+// Card Skeleton Loader Component
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm animate-pulse h-[460px] flex flex-col justify-between p-5">
+      <div className="bg-gray-200 aspect-[4/3] w-full rounded-md mb-4" />
+      <div className="space-y-3 flex-1">
+        <div className="h-4 bg-gray-200 rounded w-1/3" />
+        <div className="h-6 bg-gray-200 rounded w-3/4" />
+        <div className="h-4 bg-gray-200 rounded w-1/2" />
+        <div className="h-8 bg-gray-200 rounded w-1/3" />
+      </div>
+      <div className="h-10 bg-gray-200 rounded-lg w-full mt-4" />
+    </div>
+  );
+}
+
 export function Properties() {
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
   const [selectedLocality, setSelectedLocality] = useState('All');
 
+  // Fetch properties from Supabase
+  useEffect(() => {
+    const fetchProps = async () => {
+      try {
+        const data = await getPublicProperties();
+        if (data && data.length > 0) {
+          setProperties(data as Property[]);
+        } else {
+          setProperties(comingSoonList);
+        }
+      } catch (error) {
+        console.error("Supabase fetch error, falling back to static coming soon list:", error);
+        setProperties(comingSoonList);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProps();
+  }, []);
+
   // Multi-tier filtration logic
-  const filteredProperties = propertiesList.filter((prop) => {
+  const filteredProperties = properties.filter((prop) => {
     const statusMatch = selectedStatus === 'All' || prop.status === selectedStatus;
     const typeMatch = selectedType === 'All' || prop.type === selectedType;
     const localityMatch = selectedLocality === 'All' || prop.locality === selectedLocality;
@@ -294,7 +337,13 @@ export function Properties() {
         </div>
 
         {/* Listings Grid */}
-        {filteredProperties.length > 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+          </div>
+        ) : filteredProperties.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
             <AnimatePresence mode="popLayout">
               {filteredProperties.map((property) => (

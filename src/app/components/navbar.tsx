@@ -60,14 +60,23 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* CTA Button */}
-          <a
-            href="#contact"
-            className="hidden lg:block px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
-          >
-            Get in Touch
-          </a>
+          {/* Action Buttons Group */}
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="#contact"
+              className="px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
+            >
+              Get in Touch
+            </a>
+            <a
+              href="/admin"
+              className="text-xs text-gray-400 hover:text-[#1A2B5F] hover:border-gray-300 font-bold uppercase tracking-wider transition-all px-3 py-2 rounded border border-dashed border-gray-200 hover:bg-gray-50/50"
+              style={{ fontFamily: 'DM Sans, sans-serif' }}
+            >
+              Admin Panel
+            </a>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -111,14 +120,23 @@ export function Navbar() {
               >
                 Contact
               </a>
-              <a
-                href="#contact"
-                className="px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity text-center"
-                style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get in Touch
-              </a>
+              <div className="flex flex-col gap-2.5 pt-2">
+                <a
+                  href="#contact"
+                  className="px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity text-center w-full"
+                  style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Get in Touch
+                </a>
+                <a
+                  href="/admin"
+                  className="px-6 py-2 text-gray-400 font-bold text-xs uppercase tracking-wider rounded-md border border-dashed border-gray-200 bg-gray-50/50 hover:bg-gray-100 hover:text-[#1A2B5F] transition-all text-center w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Admin Panel
+                </a>
+              </div>
             </div>
           </div>
         )}

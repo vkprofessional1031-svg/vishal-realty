@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { MapPin, Square, BedDouble, Building, MessageCircle, Home } from 'lucide-react';
 
 interface Property {
-  id: number;
+  id: string | number;
   title: string;
   type: string;
   status: string;
@@ -16,7 +16,8 @@ interface Property {
   furnished: string;
   parking: string;
   facing: string;
-  image: string;
+  image?: string;
+  images?: string[];
   featured: boolean;
   description: string;
   highlights: string[];
@@ -28,6 +29,7 @@ interface PropertyCardProps {
 
 export function PropertyCard({ property }: PropertyCardProps) {
   const [imgError, setImgError] = useState(false);
+  const coverImage = property.images?.[0] || property.image;
 
   // Status Badge styling helper
   const getStatusStyle = (status: string) => {
@@ -67,9 +69,9 @@ export function PropertyCard({ property }: PropertyCardProps) {
       {/* Top Image Container */}
       <div className="relative aspect-[4/3] w-full bg-gray-100 overflow-hidden">
         {/* Render Image or clean fallback */}
-        {!imgError && property.image ? (
+        {!imgError && coverImage ? (
           <img
-            src={property.image}
+            src={coverImage}
             alt={property.title}
             onError={() => setImgError(true)}
             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"

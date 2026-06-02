@@ -11,7 +11,7 @@ A modern, fully responsive real estate landing page for **Vishal Realty Consulta
 | Field | Details |
 |---|---|
 | **Company** | Vishal Realty Consultancy |
-| **Founder** | Kishore Vigneswaran |
+| **Founder** | Kishore Kumar Vigneswaran |
 | **Designation** | Founder & Director |
 | **Phone / WhatsApp** | +91 63839 77798 |
 | **Email** | vishalrealty@outlook.com |
@@ -64,7 +64,7 @@ vishal-realty/
 │   ├── assets/
 │   │   ├── logo.png                    # Full VR + Vishal Realty logo
 │   │   ├── logo-symbol.png             # VR monogram only
-│   │   └── founder.jpg                 # Kishore Vigneswaran photo
+│   │   └── founder.jpg                 # Kishore Kumar Vigneswaran photo
 │   │
 │   ├── data/
 │   │   ├── properties.json             # All property listings data
@@ -292,7 +292,7 @@ vercel --prod
 
 | Field | Details |
 |---|---|
-| **Developer** | Kishore Vigneswaran |
+| **Developer** | Kishore Kumar Vigneswaran |
 | **WhatsApp** | +91 63839 77798 |
 | **Email** | vishalrealty@outlook.com |
 | **Live Site** | [vishal-realty-ivory.vercel.app](https://vishal-realty-ivory.vercel.app) |
