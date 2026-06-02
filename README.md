@@ -334,11 +334,6 @@ git push
 | Contact & consultation form | ✅ Done |
 | Google Maps embed | ✅ Done |
 | Local SEO schema markup | ✅ Done |
-| AI-powered chatbot (Claude API) | 🔜 Planned |
-| Blog / SEO articles | 🔜 Planned |
-| Google Reviews widget | 🔜 Planned |
-| Success stories section | 🔜 Planned |
-| Newsletter integration | 🔜 Planned |
 
 ---
 
