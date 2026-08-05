@@ -3,7 +3,7 @@ import { Navbar } from './components/navbar';
 import { Hero } from './components/hero';
 import { CategoryTags } from './components/category-tags';
 import { Services } from './components/services';
-import { Properties } from './components/properties';
+import { Updates } from './components/updates';
 import { Founder } from './components/founder';
 import { VisionMission } from './components/vision-mission';
 import { WhyChooseUs } from './components/why-choose-us';
@@ -20,7 +20,7 @@ export default function App() {
       <Hero />
       <CategoryTags />
       <Services />
-      <Properties />
+      <Updates />
       <Founder />
       <VisionMission />
       <WhyChooseUs />
