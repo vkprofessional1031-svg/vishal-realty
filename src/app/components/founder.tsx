@@ -35,16 +35,16 @@ export function Founder() {
           <div className="lg:col-span-5 flex flex-col items-center">
             {/* Founder Photo */}
             <div 
-              className="w-full max-w-[360px] aspect-[4/5] rounded-xl mb-8 relative overflow-hidden shadow-lg border-2"
+              className="w-full max-w-[360px] aspect-[4/5] rounded-xl mb-8 relative overflow-hidden shadow-lg border border-[#1A2B5F]/10 bg-white"
               style={{ 
-                borderColor: '#1A2B5F',
-                boxShadow: '0 8px 30px rgba(26, 43, 95, 0.12)'
+                boxShadow: '0 10px 30px -5px rgba(26, 43, 95, 0.1), 0 4px 12px -2px rgba(26, 43, 95, 0.05)'
               }}
             >
               <img 
                 src={founderImg} 
                 alt="Kishore Kumar Vigneswaran - Founder & Director" 
-                className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
+                style={{ objectPosition: 'center top' }}
               />
             </div>
 

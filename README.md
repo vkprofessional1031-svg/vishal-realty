@@ -14,7 +14,7 @@ A modern, fully responsive real estate landing page for **Vishal Realty Consulta
 | **Founder** | Kishore Kumar Vigneswaran |
 | **Designation** | Founder & Director |
 | **Phone / WhatsApp** | +91 63839 77798 |
-| **Email** | vishalrealty@outlook.com |
+| **Email** | kishore@vishalrealtychennai.com |
 | **Address** | Kamaraj Avenue, 2nd Street, Adyar, Chennai - 600 020 |
 | **Areas Served** | Adyar, OMR, ECR, Besant Nagar, Thiruvanmiyur |
 
@@ -294,7 +294,7 @@ vercel --prod
 |---|---|
 | **Developer** | Kishore Kumar Vigneswaran |
 | **WhatsApp** | +91 63839 77798 |
-| **Email** | vishalrealty@outlook.com |
+| **Email** | kishore@vishalrealtychennai.com |
 | **Live Site** | [vishal-realty-ivory.vercel.app](https://vishal-realty-ivory.vercel.app) |
 
 ---

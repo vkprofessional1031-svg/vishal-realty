@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Send, Loader2 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useForm } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
+import { toast } from 'sonner';
+
+// Placeholder EmailJS credentials
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
 type ContactFormData = {
   fullName: string;
@@ -25,31 +32,55 @@ export function Contact() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
+
+    const formattedMessage = `Hello Vishal Realty, I would like to book a free consultation.
+
+*Name:* ${data.fullName}
+*Phone:* ${data.phone}
+*Email:* ${data.email}
+*Service Interested In:* ${data.service || 'General Inquiry'}
+*Preferred Date & Time:* ${data.dateTime ? new Date(data.dateTime).toLocaleString() : 'Not specified'}
+*Requirements/Message:* ${data.message}`;
+
+    const encodedMessage = encodeURIComponent(formattedMessage);
+    const whatsappUrl = `https://wa.me/916383977798?text=${encodedMessage}`;
+
     try {
-      await fetch("https://formsubmit.co/ajax/vishalrealty@outlook.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          Name: data.fullName,
-          Phone: data.phone,
-          Email: data.email,
-          ServiceInterestedIn: data.service || 'Not specified',
-          PreferredDateTime: data.dateTime || 'Not specified',
-          Message: data.message,
-          _subject: "New Booking & Contact Request from Website!"
-        })
-      });
+      if (
+        EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' &&
+        EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+        EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY'
+      ) {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            to_email: 'kishore@vishalrealtychennai.com',
+            full_name: data.fullName,
+            phone_number: data.phone,
+            email_address: data.email,
+            service_interested: data.service || 'Not specified',
+            preferred_date_time: data.dateTime ? new Date(data.dateTime).toLocaleString() : 'Not specified',
+            message: data.message,
+            name: data.fullName,
+            phone: data.phone,
+            email: data.email,
+            service: data.service || 'Not specified',
+            dateTime: data.dateTime ? new Date(data.dateTime).toLocaleString() : 'Not specified'
+          },
+          EMAILJS_PUBLIC_KEY
+        );
+      }
       setIsSuccess(true);
-      reset();
+      toast.success("Thank you! We'll get back to you shortly.");
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
-      console.error(error);
-      alert("Failed to book consultation. Please try again.");
+      console.error('Email delivery error:', error);
+      toast.error("Could not send email copy, but opening WhatsApp for your consultation.");
     } finally {
       setIsSubmitting(false);
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      reset();
     }
   };
 
@@ -195,7 +226,7 @@ export function Contact() {
                       color: '#2D2D2D'
                     }}
                   >
-                    vishalrealty@outlook.com
+                    kishore@vishalrealtychennai.com
                   </p>
                 </div>
               </div>

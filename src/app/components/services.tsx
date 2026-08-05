@@ -16,8 +16,7 @@ const services = [
       'Property Investment Consulting',
       'Comparative Property Market Analysis',
       'Appraisals'
-    ],
-    propertyTypes: ['Residential', 'Commercial', 'Land', 'Industrial']
+    ]
   },
   {
     icon: Home,
@@ -29,8 +28,7 @@ const services = [
       'Residential Property Consulting',
       'Commercial Property Buying and Sales',
       'First-Time Home Buyer Services'
-    ],
-    propertyTypes: ['Residential', 'Commercial', 'Land']
+    ]
   },
   {
     icon: Building2,
@@ -41,8 +39,7 @@ const services = [
       'Property Development Consulting',
       'Commercial Property Consulting',
       'New Construction Services'
-    ],
-    propertyTypes: ['Land', 'Residential', 'Commercial']
+    ]
   },
   {
     icon: Key,
@@ -52,8 +49,7 @@ const services = [
       'Property Rental Assistance',
       'Property Leasing',
       'Office Space Leasing'
-    ],
-    propertyTypes: ['Residential', 'Commercial']
+    ]
   },
   {
     icon: ShieldCheck,
@@ -62,8 +58,7 @@ const services = [
     subServices: [
       'Property Management',
       'Relocation Assistance'
-    ],
-    propertyTypes: ['Residential', 'Commercial']
+    ]
   }
 ];
 
@@ -104,7 +99,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-white rounded-lg p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:border-t-4 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[380px] min-w-[290px]"
+              className="group bg-white rounded-lg p-6 lg:p-8 flex flex-col justify-start transition-all duration-300 hover:border-t-4 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[380px] min-w-[290px]"
               style={{ 
                 borderRadius: '8px',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
@@ -118,81 +113,54 @@ export function Services() {
                 e.currentTarget.style.borderTopColor = 'transparent';
               }}
             >
-              <div>
-                <div 
-                  className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
-                  style={{ backgroundColor: 'rgba(245, 166, 35, 0.1)' }}
-                >
-                  <service.icon size={24} style={{ color: '#F5A623' }} strokeWidth={2} />
-                </div>
-                
-                <h3
-                  className="text-xl mb-3"
-                  style={{ 
-                    fontFamily: 'Plus Jakarta Sans, sans-serif',
-                    fontWeight: 700,
-                    color: '#1A2B5F'
-                  }}
-                >
-                  {service.title}
-                </h3>
-                
-                <p
-                  className="text-sm leading-relaxed mb-4"
-                  style={{ 
-                    fontFamily: 'DM Sans, sans-serif',
-                    color: '#4A4A4A'
-                  }}
-                >
-                  {service.description}
-                </p>
-
-                {/* Sub-services List */}
-                <div className="mb-6">
-                  <p
-                    className="text-xs font-semibold tracking-wider uppercase mb-2"
-                    style={{ color: '#1A2B5F', opacity: 0.6 }}
-                  >
-                    Sub-Services
-                  </p>
-                  <ul className="space-y-1.5">
-                    {service.subServices.map((sub, sIdx) => (
-                      <li 
-                        key={sIdx} 
-                        className="text-xs flex items-start gap-2"
-                        style={{ fontFamily: 'DM Sans, sans-serif', color: '#555555' }}
-                      >
-                        <span className="text-[#00AEEF] mt-0.5">•</span>
-                        <span>{sub}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div 
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-5"
+                style={{ backgroundColor: 'rgba(245, 166, 35, 0.1)' }}
+              >
+                <service.icon size={24} style={{ color: '#F5A623' }} strokeWidth={2} />
               </div>
+              
+              <h3
+                className="text-xl mb-3"
+                style={{ 
+                  fontFamily: 'Plus Jakarta Sans, sans-serif',
+                  fontWeight: 700,
+                  color: '#1A2B5F'
+                }}
+              >
+                {service.title}
+              </h3>
+              
+              <p
+                className="text-sm leading-relaxed mb-4"
+                style={{ 
+                  fontFamily: 'DM Sans, sans-serif',
+                  color: '#4A4A4A'
+                }}
+              >
+                {service.description}
+              </p>
 
-              {/* Property Types Badges */}
+              {/* Sub-services List */}
               <div>
                 <p
                   className="text-xs font-semibold tracking-wider uppercase mb-2"
                   style={{ color: '#1A2B5F', opacity: 0.6 }}
                 >
-                  Property Types
+                  Sub-Services
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {service.propertyTypes.map((type, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
-                      style={{ 
-                        backgroundColor: 'rgba(0, 174, 239, 0.08)', 
-                        color: '#00AEEF',
-                        fontFamily: 'DM Sans, sans-serif'
-                      }}
+                <ul className="space-y-1.5">
+                  {service.subServices.map((sub, sIdx) => (
+                    <li 
+                      key={sIdx} 
+                      className="text-xs flex items-start gap-2"
+                      style={{ fontFamily: 'DM Sans, sans-serif', color: '#555555' }}
                     >
-                      {type}
-                    </span>
+                      <span className="text-[#00AEEF] mt-0.5">•</span>
+                      <span>{sub}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </motion.div>
           ))}

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, MessageCircle, RefreshCw } from 'lucide-react';
 import { PropertyCard } from './property-card';
-import { getPublicProperties } from '../../supabase/properties';
+import propertiesData from '../../data/properties.json';
 
 interface Property {
   id: string | number;
@@ -19,8 +19,8 @@ interface Property {
   furnished: string;
   parking: string;
   facing: string;
-  images?: string[];     // array of Supabase storage URLs
-  image?: string;        // legacy fallback image URL
+  images?: string[];
+  image?: string;
   floor_plan?: string | null;
   featured: boolean;
   description: string;
@@ -28,170 +28,15 @@ interface Property {
   created_at?: string;
 }
 
-// Fallback premium upcoming properties for elegant "Coming Soon" placeholders
-const comingSoonList: Property[] = [
-  {
-    id: 1,
-    title: "Premium Luxury Apartments",
-    type: "Apartment",
-    status: "For Sale",
-    locality: "Adyar",
-    address: "Kamaraj Avenue, Adyar, Chennai",
-    price: "Price on Request",
-    area: 1800,
-    bhk: 3,
-    floor: "3rd",
-    furnished: "Legally Verified",
-    parking: "2 Covered",
-    facing: "East",
-    image: "",
-    featured: true,
-    description: "Exclusive residential collections in Adyar. Our team is legally verifying documentation and clearing land titles.",
-    highlights: ["Premium Location", "Legally Verified", "Early Access Available"]
-  },
-  {
-    id: 2,
-    title: "Beachfront Independent Villas",
-    type: "Villa",
-    status: "For Sale",
-    locality: "ECR",
-    address: "ECR Road, Thiruvanmiyur / ECR, Chennai",
-    price: "Price on Request",
-    area: 3200,
-    bhk: 4,
-    floor: "G+1",
-    furnished: "Legally Verified",
-    parking: "3 Private",
-    facing: "North",
-    image: "",
-    featured: true,
-    description: "Ultra-luxury beachfront villas along ECR. CMDA approval and detailed legal clearance checks are currently in progress.",
-    highlights: ["Beachfront View", "Private Pool Option", "DTCP Approved plots"]
-  },
-  {
-    id: 3,
-    title: "Grade-A Commercial Office Spaces",
-    type: "Commercial",
-    status: "For Lease",
-    locality: "OMR",
-    address: "OMR IT Expressway, OMR, Chennai",
-    price: "Price on Request",
-    area: 5000,
-    bhk: null,
-    floor: "5th",
-    furnished: "Legally Verified",
-    parking: "Ample Covered",
-    facing: "West",
-    image: "",
-    featured: false,
-    description: "Modern commercial office layout on the prime IT corridor of Chennai. Ideal for IT expansion and corporate leases.",
-    highlights: ["IT Corridor", "High Rental Yield", "Ample Car Parking"]
-  },
-  {
-    id: 4,
-    title: "DTCP Approved Residential Plots",
-    type: "Plot",
-    status: "For Sale",
-    locality: "Thiruvanmiyur",
-    address: "Thiruvanmiyur Main Road, Thiruvanmiyur, Chennai",
-    price: "Price on Request",
-    area: 2400,
-    bhk: null,
-    floor: null,
-    furnished: "Legally Verified",
-    parking: "N/A",
-    facing: "South",
-    image: "",
-    featured: false,
-    description: "Prime residential plots in Thiruvanmiyur. All plots are CMDA/DTCP approved and have completed 100% legal title verification.",
-    highlights: ["DTCP Approved", "Clear Title", "Immediate Construction"]
-  },
-  {
-    id: 5,
-    title: "Premium Beach-View Apartments",
-    type: "Apartment",
-    status: "For Rent",
-    locality: "Besant Nagar",
-    address: "Besant Nagar Beach Road, Besant Nagar, Chennai",
-    price: "Price on Request",
-    area: 2000,
-    bhk: 3,
-    floor: "4th",
-    furnished: "Legally Verified",
-    parking: "2 Covered",
-    facing: "East",
-    image: "",
-    featured: true,
-    description: "Premium apartments overlooking the Besant Nagar beach. Currently undergoing final verification and landscaping.",
-    highlights: ["Ocean View", "Premium Locality", "Early Booking Open"]
-  },
-  {
-    id: 6,
-    title: "High-Visibility Commercial Showrooms",
-    type: "Commercial",
-    status: "For Sale",
-    locality: "Adyar",
-    address: "Adyar Main Road, Adyar, Chennai",
-    price: "Price on Request",
-    area: 3500,
-    bhk: null,
-    floor: "Ground",
-    furnished: "Legally Verified",
-    parking: "Ample Frontage",
-    facing: "North",
-    image: "",
-    featured: false,
-    description: "High-visibility retail showroom and office spaces in the heart of Adyar. Legally cleared with broad road frontage.",
-    highlights: ["Main Road Frontage", "High Footfalls", "Excellent Frontage"]
-  }
-];
-
 const statuses = ['All', 'For Sale', 'For Rent', 'For Lease'];
 const types = ['All', 'Apartment', 'Villa', 'Plot', 'Commercial'];
 const localities = ['All', 'Adyar', 'OMR', 'ECR', 'Besant Nagar', 'Thiruvanmiyur'];
 
-// Card Skeleton Loader Component
-function SkeletonCard() {
-  return (
-    <div className="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-sm animate-pulse h-[460px] flex flex-col justify-between p-5">
-      <div className="bg-gray-200 aspect-[4/3] w-full rounded-md mb-4" />
-      <div className="space-y-3 flex-1">
-        <div className="h-4 bg-gray-200 rounded w-1/3" />
-        <div className="h-6 bg-gray-200 rounded w-3/4" />
-        <div className="h-4 bg-gray-200 rounded w-1/2" />
-        <div className="h-8 bg-gray-200 rounded w-1/3" />
-      </div>
-      <div className="h-10 bg-gray-200 rounded-lg w-full mt-4" />
-    </div>
-  );
-}
-
 export function Properties() {
-  const [properties, setProperties] = useState<Property[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [properties] = useState<Property[]>(propertiesData as Property[]);
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [selectedType, setSelectedType] = useState('All');
   const [selectedLocality, setSelectedLocality] = useState('All');
-
-  // Fetch properties from Supabase
-  useEffect(() => {
-    const fetchProps = async () => {
-      try {
-        const data = await getPublicProperties();
-        if (data && data.length > 0) {
-          setProperties(data as Property[]);
-        } else {
-          setProperties(comingSoonList);
-        }
-      } catch (error) {
-        console.error("Supabase fetch error, falling back to static coming soon list:", error);
-        setProperties(comingSoonList);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProps();
-  }, []);
 
   // Multi-tier filtration logic
   const filteredProperties = properties.filter((prop) => {
@@ -337,13 +182,7 @@ export function Properties() {
         </div>
 
         {/* Listings Grid */}
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
-            <SkeletonCard />
-            <SkeletonCard />
-            <SkeletonCard />
-          </div>
-        ) : filteredProperties.length > 0 ? (
+        {filteredProperties.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
             <AnimatePresence mode="popLayout">
               {filteredProperties.map((property) => (

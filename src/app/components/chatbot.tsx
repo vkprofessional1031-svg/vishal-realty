@@ -28,7 +28,7 @@ const flows: Record<string, FlowNode> = {
       { label: "🛠 Our Services", next: "services" },
       { label: "📍 Areas We Cover", next: "areas" },
       { label: "❓ Common Questions", next: "faq" },
-      { label: "📞 Talk to Kishore", next: "contact" }
+      { label: "📞 Talk to the Consultant", next: "contact" }
     ]
   },
 
@@ -53,7 +53,7 @@ const flows: Record<string, FlowNode> = {
     message: "We have verified apartments for sale across Chennai. Our team will help you find the perfect match within your budget.",
     options: [
       { label: "🌐 View Properties on Website", action: "properties" },
-      { label: "💬 Talk to Kishore on WhatsApp", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant on WhatsApp", action: "whatsapp" },
       { label: "⬅️ Back to Main Menu", action: "main_menu" }
     ]
   },
@@ -61,28 +61,28 @@ const flows: Record<string, FlowNode> = {
     message: "We have rental apartments in Adyar, OMR, Besant Nagar and Thiruvanmiyur. Prices start from ₹14,000/month.",
     options: [
       { label: "🌐 View Properties on Website", action: "properties" },
-      { label: "💬 Talk to Kishore on WhatsApp", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant on WhatsApp", action: "whatsapp" },
       { label: "⬅️ Back to Main Menu", action: "main_menu" }
     ]
   },
   villa: {
     message: "We have independent villas in Thiruvanmiyur and ECR. Prices start from ₹2.4 Cr. Shall I connect you with Kishore?",
     options: [
-      { label: "💬 Talk to Kishore on WhatsApp", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant on WhatsApp", action: "whatsapp" },
       { label: "⬅️ Back to Main Menu", action: "main_menu" }
     ]
   },
   plot: {
     message: "We have DTCP approved residential plots on ECR and other localities. All plots are legally verified.",
     options: [
-      { label: "💬 Talk to Kishore on WhatsApp", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant on WhatsApp", action: "whatsapp" },
       { label: "⬅️ Back to Main Menu", action: "main_menu" }
     ]
   },
   commercial: {
     message: "We have commercial office spaces available on OMR and Adyar for lease and sale.",
     options: [
-      { label: "💬 Talk to Kishore on WhatsApp", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant on WhatsApp", action: "whatsapp" },
       { label: "⬅️ Back to Main Menu", action: "main_menu" }
     ]
   },
@@ -117,7 +117,7 @@ const flows: Record<string, FlowNode> = {
   srvJV: {
     message: "We facilitate land buying, property development consulting and new construction JV partnerships across Chennai.",
     options: [
-      { label: "💬 Talk to Kishore on WhatsApp", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant on WhatsApp", action: "whatsapp" },
       { label: "⬅️ Back to Services", action: "services_menu" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
@@ -154,7 +154,7 @@ const flows: Record<string, FlowNode> = {
     message: "Adyar is a premium residential and commercial hub in South Chennai. We have apartments, commercial spaces and land available here.",
     options: [
       { label: "🔍 Find Properties in Adyar", action: "find_properties", value: "Adyar" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -162,7 +162,7 @@ const flows: Record<string, FlowNode> = {
     message: "OMR is Chennai's IT corridor with high rental demand. Great for rental investments and commercial spaces. Studio apartments start from ₹14,000/month.",
     options: [
       { label: "🔍 Find Properties in OMR", action: "find_properties", value: "OMR" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -170,7 +170,7 @@ const flows: Record<string, FlowNode> = {
     message: "ECR offers beachfront properties, villas and investment plots. Ideal for villa construction and long-term land investment.",
     options: [
       { label: "🔍 Find Properties in ECR", action: "find_properties", value: "ECR" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -178,7 +178,7 @@ const flows: Record<string, FlowNode> = {
     message: "Besant Nagar is an upscale residential locality with high property values. Close to the beach and premium schools.",
     options: [
       { label: "🔍 Find Properties in Besant Nagar", action: "find_properties", value: "Besant Nagar" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -186,7 +186,7 @@ const flows: Record<string, FlowNode> = {
     message: "Thiruvanmiyur is a steadily growing area with a good mix of residential and commercial properties. Independent villas available from ₹2.4 Cr.",
     options: [
       { label: "🔍 Find Properties in Thiruvanmiyur", action: "find_properties", value: "Thiruvanmiyur" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -214,7 +214,7 @@ const flows: Record<string, FlowNode> = {
     message: "You'll need: Aadhar Card, PAN Card, Income proof, Bank statements (6 months), Sale deed, Encumbrance certificate, and Patta/Chitta for land properties.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -222,7 +222,7 @@ const flows: Record<string, FlowNode> = {
     message: "Typically 1-3 working days once all documents are in order and stamp duty payment is made at the Sub-Registrar's Office.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -230,7 +230,7 @@ const flows: Record<string, FlowNode> = {
     message: "UDS (Undivided Share of Land) is your proportional share of the total land in an apartment project. It is crucial for legal ownership of your flat.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -238,7 +238,7 @@ const flows: Record<string, FlowNode> = {
     message: "Check the Encumbrance Certificate, title deed, approved building plan, CMDA/DTCP approval and property tax receipts. We verify all of these before recommending any property.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -254,7 +254,7 @@ const flows: Record<string, FlowNode> = {
     message: "You'll need: Aadhar Card, PAN Card, recent salary slips or income proof, and 2-3 months bank statement.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -262,7 +262,7 @@ const flows: Record<string, FlowNode> = {
     message: "Usually 2 to 10 months of rent depending on the locality. Adyar and Besant Nagar tend to have higher deposits due to premium demand.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -270,14 +270,14 @@ const flows: Record<string, FlowNode> = {
     message: "An 11-month agreement avoids mandatory registration under the Registration Act. It is the most common rental format in Chennai and can be renewed after each term.",
     options: [
       { label: "❓ More Questions", action: "more_questions" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
   faqInvestment: {
     message: "A JV (Joint Venture) is a partnership where a landowner provides land and a developer provides construction. Profits or developed units are shared. ECR and OMR provide high rental yields. We provide full investment analysis.",
     options: [
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
@@ -285,14 +285,14 @@ const flows: Record<string, FlowNode> = {
     message: "We offer a FREE initial consultation — no charges, no hidden fees. Our service fees are discussed transparently before any engagement.",
     options: [
       { label: "📅 Book Free Consultation", action: "consultation" },
-      { label: "💬 Talk to Kishore", action: "whatsapp" },
+      { label: "💬 Talk to the Consultant", action: "whatsapp" },
       { label: "🏠 Main Menu", action: "main_menu" }
     ]
   },
 
   // FLOW 5 — Talk to Kishore / Contact
   contact: {
-    message: "Kishore is available Monday to Sunday. The fastest way to reach him is WhatsApp.\n\n📞 +91 63839 77798\n📧 vishalrealty@outlook.com\n📍 Kamaraj Avenue, 2nd Street, Adyar, Chennai",
+    message: "Kishore is available Monday to Sunday. The fastest way to reach him is WhatsApp.\n\n📞 +91 63839 77798\n📧 kishore@vishalrealtychennai.com\n📍 Kamaraj Avenue, 2nd Street, Adyar, Chennai",
     options: [
       { label: "💬 Chat on WhatsApp Now", action: "whatsapp" },
       { label: "📅 Book a Free Consultation", action: "consultation" },

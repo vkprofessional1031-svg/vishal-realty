@@ -71,10 +71,15 @@ export function Navbar() {
             </a>
             <a
               href="/admin"
-              className="text-xs text-gray-400 hover:text-[#1A2B5F] hover:border-gray-300 font-bold uppercase tracking-wider transition-all px-3 py-2 rounded border border-dashed border-gray-200 hover:bg-gray-50/50"
-              style={{ fontFamily: 'DM Sans, sans-serif' }}
+              className="px-6 py-2.5 font-medium rounded-md border transition-all hover:bg-[#1A2B5F] hover:text-white"
+              style={{
+                borderColor: '#1A2B5F',
+                color: '#1A2B5F',
+                backgroundColor: '#FFFFFF',
+                borderRadius: '6px',
+              }}
             >
-              Admin Panel
+              Admin
             </a>
           </div>
 
@@ -123,7 +128,7 @@ export function Navbar() {
               <div className="flex flex-col gap-2.5 pt-2">
                 <a
                   href="#contact"
-                  className="px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity text-center w-full"
+                  className="px-6 py-2.5 text-white font-medium rounded-md hover:opacity-90 transition-opacity text-center w-full block"
                   style={{ backgroundColor: '#00AEEF', borderRadius: '6px' }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -131,10 +136,16 @@ export function Navbar() {
                 </a>
                 <a
                   href="/admin"
-                  className="px-6 py-2 text-gray-400 font-bold text-xs uppercase tracking-wider rounded-md border border-dashed border-gray-200 bg-gray-50/50 hover:bg-gray-100 hover:text-[#1A2B5F] transition-all text-center w-full"
+                  className="px-6 py-2.5 font-medium rounded-md border transition-all hover:bg-[#1A2B5F] hover:text-white text-center w-full block"
+                  style={{
+                    borderColor: '#1A2B5F',
+                    color: '#1A2B5F',
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '6px',
+                  }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Admin Panel
+                  Admin
                 </a>
               </div>
             </div>

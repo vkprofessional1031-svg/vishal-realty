@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'motion/react';
-import { Calendar, Phone, Mail, User, BookOpen, MessageSquare } from 'lucide-react';
+import { Calendar, Phone, Mail, User, BookOpen, MessageSquare, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { toast } from 'sonner';
+
+// Placeholder EmailJS credentials
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
 interface ConsultationFormData {
   name: string;
@@ -12,6 +20,7 @@ interface ConsultationFormData {
 }
 
 export function Consultation() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { 
     register, 
     handleSubmit, 
@@ -28,7 +37,9 @@ export function Consultation() {
     }
   });
 
-  const onSubmit = (data: ConsultationFormData) => {
+  const onSubmit = async (data: ConsultationFormData) => {
+    setIsSubmitting(true);
+
     const formattedMessage = `Hello Vishal Realty, I would like to book a free consultation.
 
 *Name:* ${data.name}
@@ -40,9 +51,42 @@ export function Consultation() {
 
     const encodedMessage = encodeURIComponent(formattedMessage);
     const whatsappUrl = `https://wa.me/916383977798?text=${encodedMessage}`;
-    
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    reset();
+
+    try {
+      if (
+        EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' &&
+        EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+        EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY'
+      ) {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            to_email: 'kishore@vishalrealtychennai.com',
+            full_name: data.name,
+            phone_number: data.phone,
+            email_address: data.email,
+            service_interested: data.service,
+            preferred_date_time: data.dateTime ? new Date(data.dateTime).toLocaleString() : 'Not specified',
+            message: data.message || 'None',
+            name: data.name,
+            phone: data.phone,
+            email: data.email,
+            service: data.service,
+            dateTime: data.dateTime ? new Date(data.dateTime).toLocaleString() : 'Not specified'
+          },
+          EMAILJS_PUBLIC_KEY
+        );
+      }
+      toast.success("Thank you! We'll get back to you shortly.");
+    } catch (error) {
+      console.error('Email delivery error:', error);
+      toast.error("Could not send email copy, but opening WhatsApp for your consultation.");
+    } finally {
+      setIsSubmitting(false);
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      reset();
+    }
   };
 
   return (
@@ -274,14 +318,16 @@ export function Consultation() {
             <div>
               <button
                 type="submit"
-                className="w-full text-white font-bold py-4 px-6 rounded-lg uppercase tracking-wider transition-all duration-300 hover:opacity-90 shadow-md cursor-pointer"
+                disabled={isSubmitting}
+                className="w-full text-white font-bold py-4 px-6 rounded-lg uppercase tracking-wider transition-all duration-300 hover:opacity-90 shadow-md cursor-pointer disabled:opacity-70 flex items-center justify-center gap-2"
                 style={{ 
                   backgroundColor: '#00AEEF', 
                   fontFamily: 'DM Sans, sans-serif',
                   boxShadow: '0 4px 15px rgba(0, 174, 239, 0.2)'
                 }}
               >
-                Book My Free Consultation
+                {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : null}
+                {isSubmitting ? 'Booking...' : 'Book My Free Consultation'}
               </button>
             </div>
 

@@ -86,35 +86,33 @@ export function VisionMission() {
             </div>
           </motion.div>
 
-          {/* Mission Card: White Background, Navy Text */}
+          {/* Mission Card: Cyan Background, White Text */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="rounded-xl p-8 lg:p-10 flex flex-col justify-between border"
+            className="rounded-xl p-8 lg:p-10 flex flex-col justify-between"
             style={{ 
-              backgroundColor: '#FFFFFF',
-              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05)',
-              borderColor: 'rgba(0, 0, 0, 0.04)'
+              backgroundColor: '#00AEEF',
+              boxShadow: '0 8px 30px rgba(0, 174, 239, 0.2)'
             }}
           >
             <div>
               <span 
                 className="text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full mb-6 inline-block"
                 style={{ 
-                  backgroundColor: 'rgba(0, 174, 239, 0.1)', 
-                  color: '#00AEEF',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+                  color: '#FFFFFF',
                   fontFamily: 'DM Sans, sans-serif'
                 }}
               >
                 Our Mission
               </span>
               <p 
-                className="text-lg lg:text-xl leading-relaxed font-medium italic"
+                className="text-lg lg:text-xl leading-relaxed font-medium italic text-white"
                 style={{ 
-                  fontFamily: 'Plus Jakarta Sans, sans-serif',
-                  color: '#1A2B5F'
+                  fontFamily: 'Plus Jakarta Sans, sans-serif'
                 }}
               >
                 "At Vishal Realty Consultancy, our mission is to deliver honest, transparent, and expert real estate services that empower every client — whether a first-time home buyer, seasoned investor, or property owner — to make confident and informed decisions."

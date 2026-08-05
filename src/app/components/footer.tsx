@@ -31,7 +31,9 @@ export function Footer() {
                 <MessageCircle size={20} style={{ color: '#00AEEF' }} />
               </a>
               <a
-                href="#"
+                href="https://instagram.com/vishalrealtyadyar?igsh=MXRwNHZsdHVyYTBmMw=="
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
                 style={{ backgroundColor: 'rgba(0, 174, 239, 0.2)' }}
                 title="Instagram"
@@ -39,7 +41,7 @@ export function Footer() {
                 <Instagram size={20} style={{ color: '#00AEEF' }} />
               </a>
               <a
-                href="mailto:vishalrealty@outlook.com"
+                href="mailto:kishore@vishalrealtychennai.com"
                 className="w-10 h-10 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
                 style={{ backgroundColor: 'rgba(0, 174, 239, 0.2)' }}
                 title="Email"
@@ -154,7 +156,7 @@ export function Footer() {
                   color: 'rgba(255, 255, 255, 0.7)'
                 }}
               >
-                Email: vishalrealty@outlook.com
+                Email: kishore@vishalrealtychennai.com
               </li>
             </ul>
           </div>

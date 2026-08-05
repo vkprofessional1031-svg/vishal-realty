@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner';
 import { Navbar } from './components/navbar';
 import { Hero } from './components/hero';
 import { CategoryTags } from './components/category-tags';
@@ -14,6 +15,7 @@ import { Chatbot } from './components/chatbot';
 export default function App() {
   return (
     <div className="min-h-screen">
+      <Toaster position="top-right" richColors />
       <Navbar />
       <Hero />
       <CategoryTags />
