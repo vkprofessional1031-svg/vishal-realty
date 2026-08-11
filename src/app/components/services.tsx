@@ -1,45 +1,57 @@
 import { motion } from 'motion/react';
 import { 
-  Briefcase, 
   Home, 
-  Building2, 
+  Briefcase, 
+  MapPin, 
+  Handshake, 
   Key, 
   ShieldCheck 
 } from 'lucide-react';
 
 const services = [
   {
+    icon: Home,
+    title: 'Residential & Commercial Sales',
+    description: 'Expert representation for buying and selling residential and commercial properties across Chennai.',
+    subServices: [
+      'Buying Agent Services',
+      "Seller's Agent Services",
+      'First-Time Home Buyer Services'
+    ],
+    propertyTypes: ['Residential', 'Commercial']
+  },
+  {
     icon: Briefcase,
     title: 'Property Investment Advisory',
     description: 'Expert guidance to maximize your returns through informed real estate investments.',
     subServices: [
       'Property Investment Consulting',
-      'Comparative Property Market Analysis',
+      'Comparative Market Analysis',
       'Appraisals'
-    ]
+    ],
+    propertyTypes: ['Residential', 'Commercial', 'Land', 'Industrial']
   },
   {
-    icon: Home,
-    title: 'Real Estate Buying & Selling',
-    description: 'Professional representation and consulting for stress-free transactions.',
-    subServices: [
-      'Buying Agent Services',
-      'Seller\'s Agent Services',
-      'Residential Property Consulting',
-      'Commercial Property Buying and Sales',
-      'First-Time Home Buyer Services'
-    ]
-  },
-  {
-    icon: Building2,
-    title: 'Joint Venture Development',
-    description: 'Maximizing asset value through strategic and transparent partnerships.',
+    icon: MapPin,
+    title: 'Land Acquisition & Development',
+    description: 'End-to-end support for acquiring and developing land parcels across Chennai\'s growth corridors.',
     subServices: [
       'Land Buying and Sales',
-      'Property Development Consulting',
-      'Commercial Property Consulting',
-      'New Construction Services'
-    ]
+      'Site Evaluation',
+      'Development Consulting'
+    ],
+    propertyTypes: ['Land', 'Residential', 'Commercial']
+  },
+  {
+    icon: Handshake,
+    title: 'Joint Venture Consulting',
+    description: 'Strategic guidance for landowners and developers entering profitable joint venture partnerships.',
+    subServices: [
+      'JV Structuring',
+      'Developer Matching',
+      'New Construction Consulting'
+    ],
+    propertyTypes: ['Land', 'Residential', 'Commercial']
   },
   {
     icon: Key,
@@ -49,16 +61,18 @@ const services = [
       'Property Rental Assistance',
       'Property Leasing',
       'Office Space Leasing'
-    ]
+    ],
+    propertyTypes: ['Residential', 'Commercial']
   },
   {
     icon: ShieldCheck,
-    title: 'Property Management',
+    title: 'Property Management Services',
     description: 'End-to-end management and relocation support to protect your assets.',
     subServices: [
       'Property Management',
       'Relocation Assistance'
-    ]
+    ],
+    propertyTypes: ['Residential', 'Commercial']
   }
 ];
 
@@ -142,7 +156,7 @@ export function Services() {
               </p>
 
               {/* Sub-services List */}
-              <div>
+              <div className="flex-grow">
                 <p
                   className="text-xs font-semibold tracking-wider uppercase mb-2"
                   style={{ color: '#1A2B5F', opacity: 0.6 }}

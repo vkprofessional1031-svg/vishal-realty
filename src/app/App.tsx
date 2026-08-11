@@ -3,6 +3,7 @@ import { Navbar } from './components/navbar';
 import { Hero } from './components/hero';
 import { CategoryTags } from './components/category-tags';
 import { Services } from './components/services';
+import { EmiCalculator } from './components/emi-calculator';
 import { Updates } from './components/updates';
 import { Founder } from './components/founder';
 import { VisionMission } from './components/vision-mission';
@@ -20,6 +21,7 @@ export default function App() {
       <Hero />
       <CategoryTags />
       <Services />
+      <EmiCalculator />
       <Updates />
       <Founder />
       <VisionMission />

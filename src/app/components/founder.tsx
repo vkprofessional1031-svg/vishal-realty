@@ -86,24 +86,54 @@ export function Founder() {
 
             <div className="space-y-6">
               <p
-                className="text-lg lg:text-xl font-normal"
+                className="text-base lg:text-lg font-normal text-justify"
                 style={{ 
                   fontFamily: 'DM Sans, sans-serif',
                   lineHeight: '1.8',
                   color: '#374151'
                 }}
               >
-                With over 10 years of deep experience in Chennai's premium real estate market, Kishore Kumar Vigneswaran founded Vishal Realty Consultancy with one clear purpose — to guide families and home buyers through one of the most important decisions of their lives with absolute honesty, clarity, and care.
+                Kishore Kumar Vigneswaran began his professional journey at the age of 18. Over the past 25+ years, he has built extensive leadership and professional experience across leading organizations including Blue Star, Videocon, Siemens Gamesa, Ordain Healthcare, Sutherland, and Wood Plc, across engineering, consumer durables, healthcare, and business services.
               </p>
               <p
-                className="text-lg lg:text-xl font-normal"
+                className="text-base lg:text-lg font-normal text-justify"
                 style={{ 
                   fontFamily: 'DM Sans, sans-serif',
                   lineHeight: '1.8',
                   color: '#374151'
                 }}
               >
-                Having witnessed firsthand how complex and overwhelming the property buying journey can be, Kishore built Vishal Realty on a bedrock of trust and transparency. Today, the consultancy serves home buyers, developers, and investors alike — always driven by the same founding commitment: putting your best interests first and delivering expert, end-to-end support.
+                This diverse corporate journey shaped his approach to business—combining corporate discipline, professional integrity, and a strong commitment to client relationships. He brought this experience to Chennai's real estate market by founding Vishal Realty Consultancy with a simple belief: every family deserves honest, clear, and dependable guidance when making one of life's biggest decisions.
+              </p>
+              <p
+                className="text-base lg:text-lg font-normal text-justify"
+                style={{ 
+                  fontFamily: 'DM Sans, sans-serif',
+                  lineHeight: '1.8',
+                  color: '#374151'
+                }}
+              >
+                Having witnessed firsthand how complex the property journey can be—from understanding documentation, approvals, and title status to evaluating pricing and making the right investment decision—Kishore built Vishal Realty on the principles of trust, transparency, and professional guidance.
+              </p>
+              <p
+                className="text-base lg:text-lg font-normal text-justify"
+                style={{ 
+                  fontFamily: 'DM Sans, sans-serif',
+                  lineHeight: '1.8',
+                  color: '#374151'
+                }}
+              >
+                Today, Vishal Realty serves home buyers, property owners, developers, and investors across Chennai, providing end-to-end real estate solutions—from the initial consultation and property selection to site visits, documentation, legal coordination, registration assistance, negotiation, and final handover.
+              </p>
+              <p
+                className="text-base lg:text-lg font-normal text-justify"
+                style={{ 
+                  fontFamily: 'DM Sans, sans-serif',
+                  lineHeight: '1.8',
+                  color: '#374151'
+                }}
+              >
+                With 31+ five-star client reviews and a growing reputation for transparent and dependable service, Kishore continues to bring the same professionalism and integrity that shaped his corporate career into every real estate transaction.
               </p>
             </div>
           </div>

@@ -2,9 +2,9 @@ import { Home, Building2, Factory, Landmark } from 'lucide-react';
 
 export function CategoryTags() {
   const categories = [
-    { icon: Landmark, label: 'Land' },
     { icon: Home, label: 'Residential' },
     { icon: Building2, label: 'Commercial' },
+    { icon: Landmark, label: 'Land' },
     { icon: Factory, label: 'Industrial' },
   ];
 

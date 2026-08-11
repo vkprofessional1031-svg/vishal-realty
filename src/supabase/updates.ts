@@ -4,6 +4,7 @@ export interface UpdateItem {
   id: string;
   image_url: string;
   caption: string;
+  property_type: string;
   visibility: string;
   created_at: string;
 }
@@ -27,7 +28,7 @@ export const getPublicUpdates = async (): Promise<UpdateItem[]> => {
   return data || [];
 };
 
-export const addUpdate = async (update: { image_url: string; caption: string }) => {
+export const addUpdate = async (update: { image_url: string; caption: string; property_type: string }) => {
   const { data, error } = await supabase
     .from('updates')
     .insert([{ ...update, visibility: 'live' }])

@@ -51,6 +51,7 @@ export function UpdatesView() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [caption, setCaption] = useState('');
+  const [propertyType, setPropertyType] = useState('residential');
   const [posting, setPosting] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -147,7 +148,8 @@ export function UpdatesView() {
       // 2. Add record to updates table
       const [newRecord] = await addUpdate({
         image_url: imageUrl,
-        caption: caption.trim()
+        caption: caption.trim(),
+        property_type: propertyType
       });
 
       // 3. Optimistic UI update
@@ -160,6 +162,7 @@ export function UpdatesView() {
       toast.success('Update published live to the website!');
       handleClearFile();
       setCaption('');
+      setPropertyType('residential');
     } catch (err: any) {
       console.error('Error posting update:', err);
       toast.error(err.message || 'Failed to post update. Check Supabase connection & storage bucket.');
@@ -316,6 +319,27 @@ export function UpdatesView() {
             />
           </div>
 
+          {/* Property Type Field */}
+          <div>
+            <label 
+              className="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5"
+              style={{ fontFamily: 'DM Sans, sans-serif' }}
+            >
+              Property Type
+            </label>
+            <select
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
+              className="w-full p-3.5 bg-[#F4F6F9] border border-gray-200 rounded-xl text-sm text-[#1A2B5F] focus:outline-none focus:bg-white focus:border-[#00AEEF] focus:ring-2 focus:ring-[#00AEEF]/20 transition-all cursor-pointer"
+              style={{ fontFamily: 'DM Sans, sans-serif' }}
+            >
+              <option value="residential">Residential</option>
+              <option value="commercial">Commercial</option>
+              <option value="land">Land</option>
+              <option value="industrial">Industrial</option>
+            </select>
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
@@ -409,9 +433,14 @@ export function UpdatesView() {
                   >
                     {item.caption}
                   </p>
-                  <div className="flex items-center gap-1 text-xs text-gray-400 font-medium">
-                    <Clock size={12} />
-                    <span>{formatRelativeTime(item.created_at)}</span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-2 py-0.5 rounded bg-[#00AEEF]/10 text-[#00AEEF] text-[10px] font-bold uppercase tracking-wider">
+                      {item.property_type || 'residential'}
+                    </span>
+                    <div className="flex items-center gap-1 text-xs text-gray-400 font-medium">
+                      <Clock size={12} />
+                      <span>{formatRelativeTime(item.created_at)}</span>
+                    </div>
                   </div>
                 </div>
 

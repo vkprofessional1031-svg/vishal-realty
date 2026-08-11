@@ -1,36 +1,41 @@
 import { motion } from 'motion/react';
-import { Trophy, ShieldCheck, Handshake, Home, MapPin, Key } from 'lucide-react';
+import { Briefcase, ShieldCheck, Star, FileCheck, Users, Home, Handshake } from 'lucide-react';
 
 const reasons = [
   {
-    icon: Trophy,
-    title: '10+ Years of Expertise',
-    description: "Deep knowledge of Chennai's real estate market across all localities — residential, commercial, and investment."
+    icon: Briefcase,
+    title: '25+ Years of Leadership Experience',
+    description: 'Built across Blue Star, Videocon, Siemens Gamesa, Sutherland, and more — a foundation of corporate discipline brought into every client relationship.'
   },
   {
     icon: ShieldCheck,
-    title: 'Verified Properties Only',
-    description: 'Every property is legally and physically verified before we recommend it to any client. No surprises, no risks.'
+    title: 'Trust & Transparency First',
+    description: 'Every recommendation is guided by honesty, not just a sale — the same integrity that shaped a 25-year corporate career.'
   },
   {
-    icon: Handshake,
-    title: 'Transparent Dealings',
-    description: 'No hidden charges, no commission surprises — complete clarity at every step of the transaction.'
+    icon: Star,
+    title: '31+ Five-Star Client Reviews',
+    description: 'A growing reputation built on dependable service and real results for home buyers, investors, and developers alike.'
+  },
+  {
+    icon: FileCheck,
+    title: 'Complete Documentation Support',
+    description: 'From title verification and approvals to registration — every legal detail handled with care and clarity.'
+  },
+  {
+    icon: Users,
+    title: 'End-to-End Guidance',
+    description: 'From first consultation to final handover — site visits, negotiation, and legal coordination, all under one roof.'
   },
   {
     icon: Home,
-    title: 'First-Home Buyer Specialists',
-    description: 'We understand the emotions and concerns of buying your first home and guide you with patience and care.'
+    title: 'For Every Kind of Client',
+    description: 'Trusted by first-time home buyers, seasoned investors, property owners, and developers across Chennai.'
   },
   {
-    icon: MapPin,
-    title: 'Local Area Mastery',
-    description: 'Adyar, OMR, ECR, Besant Nagar, Thiruvanmiyur — we know every street, every project, every price trend.'
-  },
-  {
-    icon: Key,
-    title: 'End-to-End Support',
-    description: 'From your first property visit to the final registration — we are with you every step of the way.'
+    icon: Handshake,
+    title: 'A Partner, Not Just an Agent',
+    description: 'Real estate decisions are personal — Kishore brings the same client-first commitment to every transaction.'
   }
 ];
 
@@ -67,7 +72,7 @@ export function WhyChooseUs() {
               color: '#666666'
             }}
           >
-            With over 10 years in Chennai real estate, we bring expertise, honesty, and care to every property journey.
+            Built on 25+ years of professional discipline and a genuine commitment to honest, dependable guidance.
           </p>
         </div>
 
@@ -80,7 +85,7 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-lg"
+              className={`bg-white rounded-lg p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 hover:shadow-lg ${index === 6 ? 'lg:col-start-2' : ''}`}
               style={{ 
                 borderRadius: '8px',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.05)',

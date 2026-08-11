@@ -1,4 +1,5 @@
-
+import { motion } from 'motion/react';
+import { Sparkles } from 'lucide-react';
 
 export function Hero() {
   return (
@@ -26,7 +27,7 @@ export function Hero() {
               letterSpacing: '-0.02em'
             }}
           >
-            Trusted Real Estate Expertise
+            Trusted Expertise in Real Estate
           </h1>
           
           <p
@@ -38,10 +39,10 @@ export function Hero() {
               lineHeight: '1.6'
             }}
           >
-            From finding your dream home to building sustainable futures
+            From finding your dream property to building sustainable futures
           </p>
 
-          <div className="mb-10 space-y-2">
+          <div className="mb-6">
             <p
               className="text-lg md:text-xl font-medium"
               style={{ 
@@ -49,18 +50,30 @@ export function Hero() {
                 color: '#00AEEF'
               }}
             >
-              Investment • Buy • Sell
-            </p>
-            <p
-              className="text-sm md:text-base font-normal opacity-90"
-              style={{ 
-                fontFamily: 'DM Sans, sans-serif',
-                color: '#FFFFFF'
-              }}
-            >
-              Residential • Commercial • Land • Industrial
+              Buy • Sell • Invest
             </p>
           </div>
+          
+          {/* Accent Tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex items-center justify-center gap-3 mb-8 mt-2"
+          >
+            <Sparkles size={14} color="#FECC2C" />
+            <span 
+              className="text-[13px] sm:text-[14px] font-bold uppercase"
+              style={{ 
+                color: '#FECC2C', 
+                fontFamily: 'DM Sans, sans-serif',
+                letterSpacing: '0.15em'
+              }}
+            >
+              Dream · Trust · Conquer
+            </span>
+            <Sparkles size={14} color="#FECC2C" />
+          </motion.div>
         </div>
 
         {/* CTA Button */}
