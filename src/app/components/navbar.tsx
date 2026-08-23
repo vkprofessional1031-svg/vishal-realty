@@ -48,10 +48,12 @@ export function Navbar() {
             <a href="#home" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
               Home
             </a>
+            <a href="/#updates" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
+              Properties
+            </a>
             <a href="#services" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
               Services
             </a>
-
             <a href="#about" className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium">
               About
             </a>
@@ -104,13 +106,19 @@ export function Navbar() {
                 Home
               </a>
               <a
+                href="/#updates"
+                className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Properties
+              </a>
+              <a
                 href="#services"
                 className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Services
               </a>
-
               <a
                 href="#about"
                 className="text-[#2D2D2D] hover:text-[#00AEEF] transition-colors font-medium"

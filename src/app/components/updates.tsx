@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, Clock, MessageCircle, ArrowRight, Camera, X } from 'lucide-react';
+import { Sparkles, Clock, MessageCircle, ArrowRight, Camera, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import { getPublicUpdates, UpdateItem } from '../../supabase/updates';
 
 function formatRelativeTime(dateString: string): string {
@@ -29,6 +30,21 @@ export function Updates() {
   const [loading, setLoading] = useState(true);
   const [selectedUpdate, setSelectedUpdate] = useState<UpdateItem | null>(null);
   const [filter, setFilter] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // Initialize
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reset page when filter changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
 
   const filteredUpdates = filter === 'all' 
     ? updates 
@@ -38,7 +54,7 @@ export function Updates() {
     const fetchUpdates = async () => {
       try {
         const data = await getPublicUpdates();
-        setUpdates(data.slice(0, 9)); // Show latest 9 on homepage
+        setUpdates(data);
       } catch (err) {
         console.warn('Updates feed load notice (Supabase not configured or empty):', err);
       } finally {
@@ -73,6 +89,13 @@ export function Updates() {
     const text = `Hello Vishal Realty, I saw this recent update on your website and would like more details: "${caption}"`;
     window.open(`https://wa.me/916383977798?text=${encodeURIComponent(text)}`, '_blank');
   };
+
+  const itemsPerPage = 9;
+  const totalPages = Math.ceil(filteredUpdates.length / itemsPerPage);
+
+  const displayedUpdates = isMobile 
+    ? filteredUpdates.slice(0, 6) 
+    : filteredUpdates.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   // If not loading and no updates exist yet, don't show an empty gap, or show graceful coming soon card
   if (!loading && updates.length === 0) {
@@ -163,7 +186,7 @@ export function Updates() {
           /* Updates Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <AnimatePresence>
-              {filteredUpdates.map((item, idx) => (
+              {displayedUpdates.map((item, idx) => (
                 <motion.div
                   key={item.id}
                   onClick={() => setSelectedUpdate(item)}
@@ -226,6 +249,63 @@ export function Updates() {
                 </motion.div>
               ))}
             </AnimatePresence>
+          </div>
+        )}
+
+        {/* Pagination & View More Controls */}
+        {!loading && filteredUpdates.length > 0 && (
+          <div className="mt-10 flex flex-col items-center gap-6">
+            {isMobile ? (
+              <button
+                onClick={() => navigate('/updates')}
+                className="px-6 py-3 bg-[#00AEEF] hover:bg-[#0095CC] text-white rounded-xl font-bold shadow-md transition-all flex items-center gap-2"
+                style={{ fontFamily: 'DM Sans, sans-serif' }}
+              >
+                View More Properties
+                <ArrowRight size={18} />
+              </button>
+            ) : (
+              <div className="flex flex-col items-center gap-4">
+                {totalPages > 1 && (
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="p-3 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-[#00AEEF] hover:border-[#00AEEF] hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    
+                    <span 
+                      className="text-sm font-semibold text-gray-600"
+                      style={{ fontFamily: 'DM Sans, sans-serif' }}
+                    >
+                      Page {currentPage} of {totalPages}
+                    </span>
+
+                    <button
+                      onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="p-3 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-[#00AEEF] hover:border-[#00AEEF] hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      aria-label="Next page"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </div>
+                )}
+
+                {(currentPage === totalPages || totalPages <= 1) && (
+                  <button
+                    onClick={() => navigate('/updates')}
+                    className="mt-2 text-sm font-bold text-[#00AEEF] hover:text-[#1A2B5F] transition-colors flex items-center gap-1.5"
+                    style={{ fontFamily: 'DM Sans, sans-serif' }}
+                  >
+                    View All Properties <ArrowRight size={16} />
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         )}
 

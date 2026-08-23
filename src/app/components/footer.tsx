@@ -64,17 +64,23 @@ export function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-2">
-              {['Home', 'About Us', 'Properties', 'Services', 'Contact'].map((link, index) => (
+              {[
+                { name: 'Home', href: '/#home' },
+                { name: 'About Us', href: '/#about' },
+                { name: 'Properties', href: '/#updates' },
+                { name: 'Services', href: '/#services' },
+                { name: 'Contact', href: '/#contact' }
+              ].map((link, index) => (
                 <li key={index}>
                   <a
-                    href={`#${link.toLowerCase().replace(' ', '-')}`}
+                    href={link.href}
                     className="text-sm hover:text-[#00AEEF] transition-colors"
                     style={{ 
                       fontFamily: 'DM Sans, sans-serif',
                       color: 'rgba(255, 255, 255, 0.7)'
                     }}
                   >
-                    {link}
+                    {link.name}
                   </a>
                 </li>
               ))}
@@ -95,15 +101,16 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
+                'Residential & Commercial Sales',
                 'Property Investment Advisory',
-                'Real Estate Buying & Selling',
-                'Joint Venture Development',
+                'Land Acquisition & Development',
+                'Joint Venture Consulting',
                 'Rentals & Leasing Solutions',
-                'Property Management'
+                'Property Management Services'
               ].map((service, index) => (
                 <li key={index}>
                   <a
-                    href="#services"
+                    href="/#services"
                     className="text-sm hover:text-[#00AEEF] transition-colors"
                     style={{ 
                       fontFamily: 'DM Sans, sans-serif',
